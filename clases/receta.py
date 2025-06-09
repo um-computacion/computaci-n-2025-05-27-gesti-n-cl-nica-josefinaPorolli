@@ -7,9 +7,9 @@ class Receta:
         self.__paciente__ = paciente
         self.__medico__ = medico
         self.__medicamentos__ = medicamentos
-        self.__fecha__ = fecha
+        self.__fecha__ = fecha if fecha else datetime.date.today()  # Si no se proporciona fecha, se usa la fecha actual
     
     # REPRESENTACION
     def __str__(self) -> str:
         medicamentos_str = ', '.join(self.__medicamentos__)
-        return (f"RECETA\nFecha: {self.__fecha__}\nPaciente: {self.__paciente__.obtener_dni}\nMedico: {self.__medico__.obtener_matricula}\nMedicamentos: {medicamentos_str}")
+        return (f"RECETA\nFecha: {self.__fecha__}\nPaciente: {self.__paciente__.obtener_nombre} DNI: {self.__paciente__.obtener_dni}\nMedico: {self.__medico__.obtener_nombre} MATRÍCULA: {self.__medico__.obtener_matricula}\nMedicamentos: {medicamentos_str}")

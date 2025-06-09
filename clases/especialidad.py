@@ -9,9 +9,13 @@ class Especialidad:
     def obtener_especialidad(self) -> str: #devuelve el nombre de la especialidad
         return self.__tipo__
     
+    @property
+    def obtener_dias(self) -> list: # se agregó este getter para obtener los días desde la clase Médico
+        return self.__dias__
+    
     # VALIDACIONES
     def verificar_dia(self, dia:str) -> bool: # devuelve true si la especialidad está disponible en el día proporcionado. En caso contrario, devuelve false
-        return dia in self.__dias__ # si día está en la lista de días
+        return dia.upper() in self.__dias__ # si día está en la lista de días
     
     # REPRESENTACION
     def __str__(self) -> str:

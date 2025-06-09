@@ -15,13 +15,20 @@ class Medico:
     def obtener_matricula(self) -> str:
         return self.__matricula__
     
+    @property
+    def obtener_nombre(self) -> str: # se consideró la posibilidad de agregar esto para mayor legibilidad
+        return self.__nombre__
+    
     def obtener_especialidad_para_dia(self, dia:str) -> str:
         for especialidad in self.__especialidades__:
-            if dia in especialidad.__dias__:
-                return especialidad.__tipo__
+            if dia in especialidad.obtener_dias:
+                return especialidad.obtener_especialidad 
         return None
     
     # REPRESENTACION
     def __str__(self) -> str:
-        especialidades_str = '\n'.join([especialidad.__tipo__ for especialidad in self.__especialidades__]) # Se crea un string legible para listar las especialidades
+        lista = []
+        for especialidad in self.__especialidades__:
+            lista.append(especialidad.obtener_especialidad)
+        especialidades_str = '\n'.join(lista) # Se crea un string legible para listar las especialidades
         return f"Medico: {self.__nombre__}\nMatricula: {self.__matricula__}\nEspecialidades: {especialidades_str}"

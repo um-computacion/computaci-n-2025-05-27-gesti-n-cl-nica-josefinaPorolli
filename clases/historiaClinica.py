@@ -29,4 +29,4 @@ class HistoriaClinica:
     def __str__(self) -> str:
         turnos_str = "\n".join(str(turno) for turno in self.__turnos__)
         recetas_str = "\n".join(str(receta) for receta in self.__recetas__)
-        return f"Historia Clinica de {self.__paciente__.__nombre__}\nTURNOS:\n{turnos_str}\nRECETAS:\n{recetas_str}"
+        return f"Historia Clinica de {self.__paciente__.obtener_dni}\nTURNOS:\n{turnos_str}\nRECETAS:\n{recetas_str}"

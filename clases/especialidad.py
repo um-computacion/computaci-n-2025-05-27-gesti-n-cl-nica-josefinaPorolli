@@ -1,0 +1,19 @@
+class Especialidad:
+    # CONSTRUCTOR
+    def __init__(self, tipo:str, dias:list):
+        self.__tipo__ = tipo
+        self.__dias__ = dias
+    
+    # GETTERS
+    @property
+    def obtener_especialidad(self) -> str: #devuelve el nombre de la especialidad
+        return self.__tipo__
+    
+    # VALIDACIONES
+    def verificar_dia(self, dia:str) -> bool: # devuelve true si la especialidad está disponible en el día proporcionado. En caso contrario, devuelve false
+        return dia in self.__dias__ # si día está en la lista de días
+    
+    # REPRESENTACION
+    def __str__(self) -> str:
+        dias_str = '\n'.join(self.__dias__)  # convierte la lista de días en un string legible
+        return f"Especialidad: {self.__tipo__}\nDías disponibles:\n{dias_str}"

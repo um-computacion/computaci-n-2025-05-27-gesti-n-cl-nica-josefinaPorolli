@@ -213,6 +213,7 @@ Clase que almacena la información médica de un paciente: turnos y recetas.
 - `obtener_recetas() -> list[Receta]`: Devuelve una copia de la lista de recetas del paciente.
 
 #### 🧾 Representación
+
 - `__str__() -> str`: Devuelve una representación textual de la historia clínica, incluyendo turnos y recetas.
 
 
@@ -221,6 +222,7 @@ Clase que almacena la información médica de un paciente: turnos y recetas.
 Clase principal que representa el sistema de gestión de la clínica.
 
 ### 🔐 Atributos Privados
+
 - `__pacientes__`: `dict[str, Paciente]` — Mapea DNI del paciente a su objeto correspondiente.
 - `__medicos__`: `dict[str, Medico]` — Mapea matrícula de médico a su objeto correspondiente.
 - `__turnos__`: `list[Turno]` — Lista de todos los turnos agendados.
@@ -229,6 +231,7 @@ Clase principal que representa el sistema de gestión de la clínica.
 ### ⚙️ Métodos
 
 #### ✔️ Registro y Acceso
+
 - `agregar_paciente(paciente: Paciente)`: Registra un paciente y crea su historia clínica.
 - `agregar_medico(medico: Medico)`: Registra un médico.
 - `obtener_pacientes() -> list[Paciente]`: Devuelve todos los pacientes registrados.
@@ -236,14 +239,17 @@ Clase principal que representa el sistema de gestión de la clínica.
 - `obtener_medico_por_matricula(matricula: str) -> Medico`: Devuelve un médico por su matrícula.
 
 #### 📆 Turnos
+
 - `agendar_turno(dni: str, matricula: str, especialidad: str, fecha_hora: datetime)`: Agenda un turno si se cumplen todas las condiciones.
 - `obtener_turnos() -> list[Turno]`: Devuelve todos los turnos agendados.
 
 #### 📑 Recetas e Historias Clínicas
+
 - `emitir_receta(dni: str, matricula: str, medicamentos: list[str])`: Emite una receta para un paciente.
 - `obtener_historia_clinica(dni: str) -> HistoriaClinica`: Devuelve la historia clínica completa de un paciente.
 
 #### ✅ Validaciones y Utilidades
+
 - `validar_existencia_paciente(dni: str)`: Verifica si un paciente está registrado.
 - `validar_existencia_medico(matricula: str)`: Verifica si un médico está registrado.
 - `validar_turno_no_duplicado(matricula: str, fecha_hora: datetime)`: Verifica que no haya un turno duplicado.

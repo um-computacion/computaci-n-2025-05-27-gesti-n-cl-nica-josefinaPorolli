@@ -12,4 +12,4 @@ class Receta:
     # REPRESENTACION
     def __str__(self) -> str:
         medicamentos_str = ', '.join(self.__medicamentos__)
-        return (f"RECETA\nFecha: {self.__fecha__}\nPaciente: {self.__paciente__.obtener_nombre}\nMedico: {self.__medico__.obtener_nombre}\nMedicamentos: {medicamentos_str}")
+        return (f"RECETA\nFecha: {self.__fecha__}\nPaciente: {self.__paciente__.obtener_dni}\nMedico: {self.__medico__.obtener_matricula}\nMedicamentos: {medicamentos_str}")

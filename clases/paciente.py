@@ -13,4 +13,4 @@ class Paciente:
     
     # REPRESENTACION
     def __str__(self) -> str:
-        return f"Paciente: {self.__nombre__}\nDNI: {self.__dni__}\nFecha de Nacimiento: {self.__fecha_nacmimiento__}"
+        return f"Paciente: {self.__nombre__}\nDNI: {self.__dni__}\nFecha de Nacimiento: {self.__fecha_nacimiento__}"

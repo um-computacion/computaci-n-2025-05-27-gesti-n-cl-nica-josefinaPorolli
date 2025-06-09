@@ -3,6 +3,7 @@ from paciente import Paciente
 from medico import Medico
 from turno import Turno
 from historiaClinica import HistoriaClinica
+from receta import Receta
 
 class Clinica:
     # CONSTRUCTOR 
@@ -14,11 +15,11 @@ class Clinica:
 
     # REGISTRO Y ACCESO 
     def agregar_paciente(self, paciente: Paciente): #registra un paciente y crea su historia clinica
-        self.__pacientes__[paciente.__dni__] = paciente
-        self.__historias_clinicas__[paciente.__dni__] = HistoriaClinica(paciente)
+        self.__pacientes__[paciente.obtener_dni] = paciente
+        self.__historias_clinicas__[paciente.obtener_dni] = HistoriaClinica(paciente, [], [])
     
     def agregar_medico(self, medico: Medico): #registra un medico
-        self.__medicos__[medico.__matricula__] = medico
+        self.__medicos__[medico.obtener_matricula] = medico
     
     def obtener_pacientes(self) -> list[Paciente]:
         return list(self.__pacientes__.values())
@@ -31,17 +32,25 @@ class Clinica:
     
     # TURNOS
     def agendar_turno(self, dni:str, matricula:str, especialidad:str, fecha_hora:datetime.datetime):
-        turno = Turno(dni, matricula, especialidad, fecha_hora)
+        paciente = self.__pacientes__.get(dni)
+        medico = self.__medicos__.get(matricula)
+        turno = Turno(paciente, medico, fecha_hora, especialidad)
         self.__turnos__.append(turno)
+        self.__historias_clinicas__[dni].agregar_turno(turno)
 
     def obtener_turnos(self) -> list[Turno]:
         return self.__turnos__
     
     # RECETAS E HISTORIAS CLÍNICAS
     def emitir_receta(self, dni:str, matricula:str, medicamentos:list[str]):
-        historia = self.__historias_clinicas__.get(dni) # obtiene la historia clínica del paciente por su DNI
+        paciente = self.__pacientes__.get(dni)
+        medico = self.__medicos__.get(matricula)
+        if not paciente or not medico:
+            raise ValueError("Paciente o médico no encontrado")
+        receta = Receta(paciente, medico, medicamentos, datetime.date.today())
+        historia = self.__historias_clinicas__.get(dni)
         if historia:
-            historia.agregar_receta(matricula, medicamentos)
+            historia.agregar_receta(receta)
         else:
             raise ValueError("No se encontró una historia clínica para el paciente de DNI: " + dni)
         

@@ -11,6 +11,10 @@ class Paciente:
     def obtener_dni(self) -> str:
         return self.__dni__
     
+    @property
+    def obtener_nombre(self) -> str: # se consideró la posibilidad de agregar esto para mayor legibilidad
+        return self.__nombre__
+    
     # REPRESENTACION
     def __str__(self) -> str:
         return f"Paciente: {self.__nombre__}\nDNI: {self.__dni__}\nFecha de Nacimiento: {self.__fecha_nacimiento__}"

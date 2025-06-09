@@ -22,5 +22,5 @@ class Turno:
     
     # REPRESENTACION
     def __str__(self) -> str:
-        return f"TURNO\nFecha y hora: {self.__fecha_hora__}\nPaciente: {self.__paciente__.obtener_nombre}\nMedico: {self.__medico__.obtener_nombre}\nEspecialidad: {self.__especialidad__.obtener_nombre}"
+        return f"TURNO\nFecha y hora: {self.__fecha_hora__}\nPaciente: {self.__paciente__.obtener_nombre}\nMedico: {self.__medico__.obtener_matricula}\nEspecialidad: {self.__especialidad__.obtener_especialidad}"
     

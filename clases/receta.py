@@ -1,6 +1,6 @@
 import datetime
-from paciente import Paciente
-from medico import Medico
+from .paciente import Paciente
+from .medico import Medico
 class Receta:
     # CONSTRUCTOR
     def __init__(self, paciente:Paciente, medico:Medico, medicamentos:list[str], fecha:datetime.date):

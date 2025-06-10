@@ -1,9 +1,11 @@
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import datetime
-from paciente import Paciente
-from medico import Medico
-from turno import Turno
-from historiaClinica import HistoriaClinica
-from receta import Receta
+from .paciente import Paciente
+from .medico import Medico
+from .turno import Turno
+from .historiaClinica import HistoriaClinica
+from .receta import Receta
 from excepciones.exceptions import PacienteNoEncontradoError, MedicoNoDisponibleError, TurnoOcupadoError, RecetaInvalidaError
 
 class Clinica:
@@ -23,10 +25,10 @@ class Clinica:
         self.__medicos__[medico.obtener_matricula] = medico
     
     def obtener_pacientes(self) -> list[Paciente]:
-        return list(self.__pacientes__.values())
+        return list(self.__pacientes__.keys()) # corrección: se toman los índices de los pacientes
     
     def obtener_medicos(self) -> list[Medico]:
-        return list(self.__medicos__.values())
+        return list(self.__medicos__.keys()) # corrección: se toman los índices de los médicos
     
     def obtener_medico_por_matricula(self, matricula: str) -> Medico:
         return self.__medicos__.get(matricula)

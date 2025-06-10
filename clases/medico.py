@@ -1,4 +1,4 @@
-from especialidad import Especialidad # Se importa la clase Especialidad para poder usarla en la clase Medico
+from .especialidad import Especialidad # Se importa la clase Especialidad para poder usarla en la clase Medico
 class Medico:
     # CONSTRUCTOR
     def __init__(self, nombre:str, matricula:str, especialidades:list):

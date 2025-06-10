@@ -2,6 +2,18 @@ import datetime # se importa datetime para manejar fechas
 class Paciente:
     # CONSTRUCTOR
     def __init__(self, nombre:str, dni:str, fecha_nacimiento:datetime.date):
+        # VALIDACIONES
+        # Validar existencia de datos obligatorios
+        if not nombre or not dni or not fecha_nacimiento:
+            raise ValueError("Faltan datos obligatorios del paciente")
+        # Validar tipo de datos
+        if not isinstance(nombre, str):
+            raise TypeError("El nombre debe ser una cadena")
+        if not isinstance(dni, str):
+            raise TypeError("El DNI debe ser una cadena")
+        if not isinstance(fecha_nacimiento, datetime.date):
+            raise TypeError("La fecha de nacimiento debe ser un objeto datetime.date")
+        
         self.__nombre__ = nombre
         self.__dni__ = dni
         self.__fecha_nacimiento__ = fecha_nacimiento

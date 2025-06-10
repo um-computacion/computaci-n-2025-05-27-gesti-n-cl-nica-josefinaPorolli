@@ -1,7 +1,8 @@
 import datetime
-from paciente import Paciente
-from medico import Medico
-from especialidad import Especialidad
+
+from .paciente import Paciente
+from .medico import Medico
+from .especialidad import Especialidad
 
 class Turno:
     # CONSTRUCTOR

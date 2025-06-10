@@ -1,6 +1,6 @@
-from paciente import Paciente
-from turno import Turno
-from receta import Receta
+from .paciente import Paciente
+from .turno import Turno
+from .receta import Receta
 
 class HistoriaClinica:
     # CONSTRUCTOR

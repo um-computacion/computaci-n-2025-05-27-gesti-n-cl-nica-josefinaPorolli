@@ -52,6 +52,26 @@ class Clinica:
     def agendar_turno(self, dni:str, matricula:str, especialidad:str, fecha_hora:datetime.datetime):
         paciente = self.__pacientes__.get(dni)
         medico = self.__medicos__.get(matricula)
+        # Validar existencia de paciente y médico
+        if not paciente:
+            raise PacienteNoEncontradoError(dni)
+        if not medico:
+            raise MedicoNoDisponibleError(matricula)
+        # Validar especialidad
+        especialidad_obj = None
+        for esp in medico.obtener_especialidades():
+            if esp.obtener_especialidad == especialidad:
+                especialidad_obj = esp
+                break
+        if not especialidad_obj:
+            raise ValueError("El médico no tiene la especialidad solicitada")
+        # Validar día
+        dia = fecha_hora.strftime("%A").capitalize() # obtener el día de la semana en español
+        if not especialidad_obj.verificar_dia(dia):
+            raise ValueError("El médico no atiende esa especialidad ese día")
+        # Validar turno duplicado
+        self.validar_turno_no_duplicado(fecha_hora)
+        # Crear el turno con el string de especialidad
         turno = Turno(paciente, medico, fecha_hora, especialidad)
         self.__turnos__.append(turno)
         self.__historias_clinicas__[dni].agregar_turno(turno)

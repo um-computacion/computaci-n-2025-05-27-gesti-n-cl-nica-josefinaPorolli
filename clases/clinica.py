@@ -66,7 +66,7 @@ class Clinica:
         if not especialidad_obj:
             raise ValueError("El médico no tiene la especialidad solicitada")
         # Validar día
-        dia = fecha_hora.strftime("%A").capitalize() # obtener el día de la semana en español
+        dia = self.obtener_dia_semana_en_espanol(fecha_hora) # obtener el día de la semana en español
         if not especialidad_obj.verificar_dia(dia):
             raise ValueError("El médico no atiende esa especialidad ese día")
         # Validar turno duplicado
@@ -75,6 +75,7 @@ class Clinica:
         turno = Turno(paciente, medico, fecha_hora, especialidad)
         self.__turnos__.append(turno)
         self.__historias_clinicas__[dni].agregar_turno(turno)
+        return turno
 
     def obtener_turnos(self) -> list[Turno]:
         return self.__turnos__

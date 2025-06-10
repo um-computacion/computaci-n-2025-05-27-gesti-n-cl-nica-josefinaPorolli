@@ -18,11 +18,17 @@ class Clinica:
 
     # REGISTRO Y ACCESO 
     def agregar_paciente(self, paciente: Paciente): #registra un paciente y crea su historia clinica
-        self.__pacientes__[paciente.obtener_dni] = paciente
-        self.__historias_clinicas__[paciente.obtener_dni] = HistoriaClinica(paciente, [], [])
+        dni = paciente.obtener_dni
+        if dni in self.__pacientes__:
+            raise ValueError(f"El paciente con DNI {dni} ya está registrado.")
+        self.__pacientes__[dni] = paciente
+        self.__historias_clinicas__[dni] = HistoriaClinica(paciente, [], []) # corrección para que lance la excepción
     
     def agregar_medico(self, medico: Medico): #registra un medico
-        self.__medicos__[medico.obtener_matricula] = medico
+        matricula = medico.obtener_matricula
+        if matricula in self.__medicos__:
+            raise ValueError(f"El médico con matrícula {matricula} ya está registrado.")
+        self.__medicos__[matricula] = medico
     
     def obtener_pacientes(self) -> list[Paciente]:
         return list(self.__pacientes__.values()) # corrección: se toman los índices de los pacientes

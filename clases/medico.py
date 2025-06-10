@@ -2,6 +2,17 @@ from .especialidad import Especialidad # Se importa la clase Especialidad para p
 class Medico:
     # CONSTRUCTOR
     def __init__(self, nombre:str, matricula:str, especialidades:list):
+        # VALIDACIONES
+        # Validar existencia de datos obligatorios
+        if not nombre or not matricula or not especialidades:
+            raise ValueError("Faltan datos obligatorios del médico")
+        # Validar tipo de datos
+        if not isinstance(nombre, str):
+            raise TypeError("El nombre debe ser una cadena")
+        if not isinstance(matricula, str):
+            raise TypeError("La matrícula debe ser una cadena")
+        if not isinstance(especialidades, list):
+            raise TypeError("Debe hacer una lista de especialidades")
         self.__nombre__ = nombre
         self.__matricula__ = matricula
         self.__especialidades__ = especialidades # Se traerá una lista de especialidades de la clase Especialidad

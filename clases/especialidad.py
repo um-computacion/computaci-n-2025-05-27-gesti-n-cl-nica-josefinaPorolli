@@ -25,7 +25,7 @@ class Especialidad:
     
     # VALIDACIONES
     def verificar_dia(self, dia:str) -> bool: # devuelve true si la especialidad está disponible en el día proporcionado. En caso contrario, devuelve false
-        return dia.upper() in self.__dias__ # si día está en la lista de días
+        return dia in self.__dias__ # si día está en la lista de días
     
     # REPRESENTACION
     def __str__(self) -> str:

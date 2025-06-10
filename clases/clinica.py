@@ -25,10 +25,10 @@ class Clinica:
         self.__medicos__[medico.obtener_matricula] = medico
     
     def obtener_pacientes(self) -> list[Paciente]:
-        return list(self.__pacientes__.keys()) # corrección: se toman los índices de los pacientes
+        return list(self.__pacientes__.values()) # corrección: se toman los índices de los pacientes
     
     def obtener_medicos(self) -> list[Medico]:
-        return list(self.__medicos__.keys()) # corrección: se toman los índices de los médicos
+        return list(self.__medicos__.values()) # corrección: se toman los índices de los médicos
     
     def obtener_medico_por_matricula(self, matricula: str) -> Medico:
         return self.__medicos__.get(matricula)

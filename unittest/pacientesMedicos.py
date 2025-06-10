@@ -16,7 +16,7 @@ class TestPacientesMedicos(unittest.TestCase):
     def test_registro_paciente(self):
         paciente = Paciente("Juan Pérez", "12345678", datetime.date(1959, 8, 11)) # se crea un paciente modelo
         self.clinica.agregar_paciente(paciente) # se agrega el paciente a la clínica
-        self.assertIn("12345678", self.clinica.obtener_pacientes()) # se verifica que el paciente esté registrado
+        self.assertIn(paciente, self.clinica.obtener_pacientes()) # se verifica que el paciente esté registrado
 
 if __name__ == "__main__":
     unittest.main()  # se ejecutan las pruebas

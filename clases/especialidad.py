@@ -1,6 +1,16 @@
 class Especialidad:
+    # Para tomar días válidos
+    DIAS_VALIDOS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
     # CONSTRUCTOR
     def __init__(self, tipo:str, dias:list):
+        if not tipo or not dias:
+            raise ValueError("Faltan datos de especialidad")
+        if not isinstance(tipo, str) or not isinstance(dias, list):
+            raise TypeError("Nombre debe ser str y días debe ser una lista")
+
+        for dia in dias:
+            if dia not in self.DIAS_VALIDOS:
+                raise ValueError(f"Día {dia} inválido en especialidad. Debe ser uno de los siguientes: {', '.join(self.DIAS_VALIDOS)}")
         self.__tipo__ = tipo
         self.__dias__ = dias
     

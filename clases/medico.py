@@ -18,7 +18,14 @@ class Medico:
         self.__especialidades__ = especialidades # Se traerá una lista de especialidades de la clase Especialidad
     
     # SETTERS
-    def agregar_especialidad(self, especialidad:Especialidad): # Cuando se cree la clase Especialidad, se podrá agregar una especialidad
+    def agregar_especialidad(self, especialidad:Especialidad):
+        if not isinstance(especialidad, Especialidad):
+            raise TypeError("La especialidad debe ser una instancia de la clase Especialidad")
+
+        for esp in self.__especialidades__:
+            if esp.obtener_especialidad == especialidad.obtener_especialidad:
+                raise ValueError("La especialidad ya está registrada para este médico")
+        
         self.__especialidades__.append(especialidad)
     
     # GETTERS

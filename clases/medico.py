@@ -37,6 +37,9 @@ class Medico:
     def obtener_nombre(self) -> str: # se consideró la posibilidad de agregar esto para mayor legibilidad
         return self.__nombre__
     
+    def obtener_especialidades(self) -> list[Especialidad]:
+        return self.__especialidades__
+    
     def obtener_especialidad_para_dia(self, dia:str) -> str:
         for especialidad in self.__especialidades__:
             if dia in especialidad.obtener_dias:

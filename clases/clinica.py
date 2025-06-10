@@ -6,6 +6,7 @@ from .medico import Medico
 from .turno import Turno
 from .historiaClinica import HistoriaClinica
 from .receta import Receta
+from .especialidad import Especialidad
 from excepciones.exceptions import PacienteNoEncontradoError, MedicoNoDisponibleError, TurnoOcupadoError, RecetaInvalidaError
 
 class Clinica:
@@ -29,6 +30,14 @@ class Clinica:
         if matricula in self.__medicos__:
             raise ValueError(f"El médico con matrícula {matricula} ya está registrado.")
         self.__medicos__[matricula] = medico
+    
+    def agregar_especialidad_a_medico(self, matricula:str, especialidad:Especialidad):
+        # Verificar que el médico esté registrado
+        if matricula not in self.__medicos__:
+            self.validar_existencia_medico(matricula)
+
+        medico = self.__medicos__[matricula]
+        medico.agregar_especialidad(especialidad)
     
     def obtener_pacientes(self) -> list[Paciente]:
         return list(self.__pacientes__.values()) # corrección: se toman los índices de los pacientes

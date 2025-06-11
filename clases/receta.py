@@ -1,9 +1,11 @@
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import datetime
 from .paciente import Paciente
 from .medico import Medico
 class Receta:
     # CONSTRUCTOR
-    def __init__(self, paciente:Paciente, medico:Medico, medicamentos:list[str], fecha:datetime.date):
+    def __init__(self, paciente:Paciente, medico:Medico, medicamentos:list[str], fecha:datetime.date = None):
         self.__paciente__ = paciente
         self.__medico__ = medico
         self.__medicamentos__ = medicamentos

@@ -84,8 +84,12 @@ class Clinica:
     def emitir_receta(self, dni:str, matricula:str, medicamentos:list[str]):
         paciente = self.__pacientes__.get(dni)
         medico = self.__medicos__.get(matricula)
-        if not paciente or not medico:
-            raise ValueError("Paciente o médico no encontrado")
+        if not paciente:
+            raise PacienteNoEncontradoError(dni)
+        if not medico:
+            raise MedicoNoDisponibleError(matricula)
+        if not medicamentos or len(medicamentos) == 0:
+            raise RecetaInvalidaError("La receta debe contener al menos un medicamento o indicar recomendaciones.")
         receta = Receta(paciente, medico, medicamentos, datetime.date.today())
         historia = self.__historias_clinicas__.get(dni)
         if historia:

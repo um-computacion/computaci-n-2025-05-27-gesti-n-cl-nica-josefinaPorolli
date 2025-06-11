@@ -96,6 +96,7 @@ class Clinica:
             historia.agregar_receta(receta)
         else:
             raise ValueError("No se encontró una historia clínica para el paciente de DNI: " + dni)
+        return receta
         
     def obtener_historia_clinica(self, dni:str) -> HistoriaClinica:
         return self.__historias_clinicas__.get(dni)

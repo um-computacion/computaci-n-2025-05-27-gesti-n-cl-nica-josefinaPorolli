@@ -33,6 +33,7 @@ def main():
             break
         
         elif opcion == '1':
+            # Agregar paciente
             try:
                 nombre = input("Ingrese nombre del paciente: ").strip() # strip elimina espacios al inicio y al final
                 dni = input("Ingrese DNI del paciente: ").strip()
@@ -59,6 +60,7 @@ def main():
                 print(f"Error inesperado: {e}")
         
         elif opcion == '2':
+            # Agregar médico
             try:
                 nombre = input("Ingrese nombre del médico: ").strip()
                 matricula = input("Ingrese matrícula del médico: ").strip()
@@ -81,7 +83,6 @@ def main():
                         elif dia == "Sabado":
                             dia = "Sábado"
                         dias.append(dia)
-                    print(dias)
 
                     # Validación
                     for dia in dias:
@@ -104,7 +105,6 @@ def main():
                 print(f"Error inesperado: {e}")
 
         elif opcion == '3':
-            # Solicita DNI de paciente, matrícula de médico, especialidad y fecha/hora. Intenta agendar el turno validando que no haya conflictos.
             # Validar y agendar turno
             dni_paciente = input("Ingrese el DNI del paciente: ").strip()
             matricula_medico = input("Ingrese la matrícula del médico: ").strip()
@@ -150,6 +150,43 @@ def main():
                 print(f"Error de tipo de dato: {te}")
             except Exception as e:
                 print(f"Error inesperado: {e}")
+
+        elif opcion == '4':
+            # Agregar especialidad a un médico
+            matricula = input("Ingrese la matrícula del médico: ").strip()
+            tipo_especialidad = input("Ingrese tipo de especialidad: ").strip()
+            dias_str = input("Ingrese días disponibles (separados por comas): ").strip()
+            DIAS_VALIDOS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"] # se hace la misma validación de días que al agregar especialidad al médico en agregar médico
+
+            dias = []
+            for dia_ingresado in dias_str.split(','):
+                dia = dia_ingresado.strip().capitalize()
+                if dia == "Miercoles":
+                    dia = "Miércoles"
+                elif dia == "Sabado":
+                    dia = "Sábado"
+                dias.append(dia)
+
+            # Validación
+            for dia in dias:
+                if dia not in DIAS_VALIDOS:
+                    raise ValueError(f"Día {dia} inválido. Los días válidos son: {', '.join(DIAS_VALIDOS)}")
+
+            # crear especialidad
+            especialidad = Especialidad(tipo_especialidad, dias)
+            try:
+                clinica.agregar_especialidad_a_medico(matricula, especialidad)
+                print("Especialidad agregada correctamente al médico.\n")
+            except MedicoNoDisponibleError as e:
+                print(f"Error: {e}")
+            except ValueError as ve:
+                print(f"Error: {ve}")
+            except TypeError as te:
+                print(f"Error de tipo de dato: {te}")
+            except Exception as e:
+                print(f"Error inesperado: {e}")
+            
+
 
 if __name__ == "__main__":
     main()

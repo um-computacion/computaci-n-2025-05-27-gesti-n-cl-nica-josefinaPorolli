@@ -4,6 +4,7 @@ from clases.paciente import Paciente
 from clases.medico import Medico
 from clases.especialidad import Especialidad
 from clases.turno import Turno
+from clases.receta import Receta
 from clases.historiaClinica import HistoriaClinica
 from excepciones.exceptions import *
 
@@ -185,7 +186,27 @@ def main():
                 print(f"Error de tipo de dato: {te}")
             except Exception as e:
                 print(f"Error inesperado: {e}")
-            
+
+        elif opcion == '5':
+            # Solicita DNI de paciente, matrícula de médico y medicamentos, luego registra la receta.
+            dni_paciente = input("Ingrese el DNI del paciente: ").strip()
+            matricula_medico = input("Ingrese la matrícula del médico: ").strip()
+            medicamentos_str = input("Ingrese los medicamentos (separados por comas): ").strip()
+
+            # Procesar lista de medicamentos
+            medicamentos = [med.strip() for med in medicamentos_str.split(',') if med.strip()]
+
+            try:
+                clinica.emitir_receta(dni_paciente, matricula_medico, medicamentos) # también se agrega a la historia clínica del paciente
+                print("Receta emitida correctamente.\n")
+            except PacienteNoEncontradoError as e:
+                print(f"Error: {e}")
+            except MedicoNoDisponibleError as e:
+                print(f"Error: {e}")
+            except RecetaInvalidaError as e:
+                print(f"Error: {e}")
+            except Exception as e:
+                print(f"Error inesperado: {e}")
 
 
 if __name__ == "__main__":

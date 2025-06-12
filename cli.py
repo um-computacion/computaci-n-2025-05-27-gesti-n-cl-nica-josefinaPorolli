@@ -226,5 +226,42 @@ def main():
             except Exception as e:
                 print(f"Error inesperado: {e}")
 
+        elif opcion == '7':
+            # Ver todos los turnos
+            try:
+                turnos = clinica.obtener_turnos()
+                if not turnos:
+                    print("No hay turnos registrados.")
+                else:
+                    for turno in turnos:
+                        print(turno)
+            except Exception as e:
+                print(f"Error al obtener los turnos: {e}")
+            
+        elif opcion == '8':
+            # Ver todos los pacientes
+            try:
+                pacientes = clinica.obtener_pacientes()
+                if not pacientes:
+                    print("No hay pacientes registrados.")
+                else:
+                    for paciente in pacientes:
+                        print(paciente)
+            except Exception as e:
+                print(f"Error al obtener los pacientes: {e}")
+        
+        elif opcion == '9':
+            # Ver todos los médicos
+            try:
+                medicos = clinica.obtener_medicos()
+                if not medicos:
+                    print("No hay médicos registrados.")
+                else:
+                    for medico in medicos:
+                        print(medico)
+            except Exception as e:
+                print(f"Error al obtener los médicos: {e}")
+
+
 if __name__ == "__main__":
     main()

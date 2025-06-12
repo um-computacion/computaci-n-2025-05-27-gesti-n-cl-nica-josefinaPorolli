@@ -52,4 +52,4 @@ class Medico:
         for especialidad in self.__especialidades__:
             lista.append(especialidad.obtener_especialidad)
         especialidades_str = '\n'.join(lista) # Se crea un string legible para listar las especialidades
-        return f"Medico: {self.__nombre__}\nMatricula: {self.__matricula__}\nEspecialidades: {especialidades_str}"
+        return f"---------\nMedico: {self.__nombre__}\nMatricula: {self.__matricula__}\nEspecialidades: {especialidades_str}\n---------"

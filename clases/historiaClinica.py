@@ -29,4 +29,8 @@ class HistoriaClinica:
     def __str__(self) -> str:
         turnos_str = "\n".join(str(turno) for turno in self.__turnos__)
         recetas_str = "\n".join(str(receta) for receta in self.__recetas__)
-        return f"Historia Clinica de {self.__paciente__.obtener_dni}\nTURNOS:\n{turnos_str}\nRECETAS:\n{recetas_str}"
+        if not turnos_str:
+            turnos_str = "No hay turnos registrados."
+        if not recetas_str:
+            recetas_str = "No hay recetas registradas."
+        return f"Historia Clinica de {self.__paciente__.obtener_nombre} - {self.__paciente__.obtener_dni}\nTURNOS:\n{turnos_str}\nRECETAS:\n{recetas_str}"

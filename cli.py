@@ -127,15 +127,19 @@ def main():
                 if pacientei.obtener_dni == dni_paciente:
                     paciente = pacientei
                     break
-                else:
-                    raise PacienteNoEncontradoError(dni_paciente)
-            
+            if paciente is None:
+                print(f"Error: No se encontró un paciente con DNI {dni_paciente}.")
+                continue
+
+            # Buscar médico
+            medico = None
             for medicoi in lista_medicos:
                 if medicoi.obtener_matricula == matricula_medico:
                     medico = medicoi
                     break
-                else:
-                    raise MedicoNoDisponibleError(matricula_medico)
+            if medico is None:
+                print(f"Error: No se encontró un médico con matrícula {matricula_medico}.") # como nadie me avisa que no se pueden agregar excepciones en un for xD
+                continue
 
             try:
                 # Buscar paciente, médico, agendar turno...
@@ -188,7 +192,6 @@ def main():
                 print(f"Error inesperado: {e}")
 
         elif opcion == '5':
-            # Solicita DNI de paciente, matrícula de médico y medicamentos, luego registra la receta.
             dni_paciente = input("Ingrese el DNI del paciente: ").strip()
             matricula_medico = input("Ingrese la matrícula del médico: ").strip()
             medicamentos_str = input("Ingrese los medicamentos (separados por comas): ").strip()
@@ -208,6 +211,20 @@ def main():
             except Exception as e:
                 print(f"Error inesperado: {e}")
 
+        elif opcion == '6':
+            # ver historia clínica
+            try:
+                dni_paciente = input("Ingrese el DNI del paciente: ").strip()
+                historia = clinica.obtener_historia_clinica(dni_paciente)
+                print(historia)
+            except PacienteNoEncontradoError as e:
+                print(f"Error: {e}")
+            except MedicoNoDisponibleError as e:
+                print(f"Error: {e}")
+            except RecetaInvalidaError as e:
+                print(f"Error: {e}")
+            except Exception as e:
+                print(f"Error inesperado: {e}")
 
 if __name__ == "__main__":
     main()

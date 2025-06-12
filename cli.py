@@ -3,6 +3,9 @@ from clases.clinica import Clinica
 from clases.paciente import Paciente
 from clases.medico import Medico
 from clases.especialidad import Especialidad
+from clases.turno import Turno
+from clases.historiaClinica import HistoriaClinica
+from excepciones.exceptions import *
 
 def menu():
     print('''
@@ -100,6 +103,53 @@ def main():
             except Exception as e:
                 print(f"Error inesperado: {e}")
 
+        elif opcion == '3':
+            # Solicita DNI de paciente, matrícula de médico, especialidad y fecha/hora. Intenta agendar el turno validando que no haya conflictos.
+            # Validar y agendar turno
+            dni_paciente = input("Ingrese el DNI del paciente: ").strip()
+            matricula_medico = input("Ingrese la matrícula del médico: ").strip()
+            especialidad = input("Ingrese la especialidad para el turno: ").strip()
+            fecha_hora_str = input("Ingrese la fecha y hora (dd/mm/aaaa hh:mm): ").strip()
+
+            # Convertir string a datetime
+            try:
+                fecha_hora = datetime.datetime.strptime(fecha_hora_str, "%d/%m/%Y %H:%M")
+            except ValueError:
+                print("Error: Fecha y hora inválidas. Ingrese un formato válido (dd/mm/aaaa hh:mm).")
+                continue
+
+            # Buscar paciente y médico
+            lista_pacientes = clinica.obtener_pacientes() # devuelve la lista de pacientes
+            lista_medicos = clinica.obtener_medicos() # devuelve la lista de médicos
+
+            for pacientei in lista_pacientes:
+                if pacientei.obtener_dni == dni_paciente:
+                    paciente = pacientei
+                    break
+                else:
+                    raise PacienteNoEncontradoError(dni_paciente)
+            
+            for medicoi in lista_medicos:
+                if medicoi.obtener_matricula == matricula_medico:
+                    medico = medicoi
+                    break
+                else:
+                    raise MedicoNoDisponibleError(matricula_medico)
+
+            try:
+                # Buscar paciente, médico, agendar turno...
+                clinica.agendar_turno(dni_paciente, matricula_medico, especialidad, fecha_hora)
+                print("Turno agendado correctamente.\n")
+            except PacienteNoEncontradoError as e:
+                print(f"Error: {e}")
+            except MedicoNoDisponibleError as e:
+                print(f"Error: {e}")
+            except ValueError as ve:
+                print(f"Error: {ve}")
+            except TypeError as te:
+                print(f"Error de tipo de dato: {te}")
+            except Exception as e:
+                print(f"Error inesperado: {e}")
 
 if __name__ == "__main__":
     main()

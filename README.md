@@ -3,17 +3,46 @@
 ## 👤 Información del Alumno
 
 ### 📋 Datos Personales
-- **Nombre y Apellido**: [Completar con nombre y apellido]
+
+- **Nombre y Apellido**: Josefina Porolli Serpa
 - **Ciclo Lectivo**: 2025
-- **Carrera**: [Completar con nombre de la carrera]
+- **Carrera**: Ingeniería en Informática
+
+## 📚 Documentación
+
+### Cómo ejecutar el sistema
+
+1. Abrir una terminal en la carpeta del proyecto
+2. Ejecutar el siguiente comando:
+python cli.py
+
+### Cómo ejecutar los tests
+
+1. Abrir una terminal en la carpeta del proyecto.
+2. Ejecutar el siguiente comando:
+python -m unittest discover -s unittest
+
+Esto buscará y ejecutará todos los tests en la carpeta `unittest`.
+
+3. Si se quiere correr un test específico, por ejemplo `test_turnos.py`:
+python -m unittest test_turnos.py
+
+### Diseño general
+
+- El presente proyecto simula un software de gestión de una clínica. Al momento de ejecutar cli.py, aparece un menú en para elegir entre distintas opciones.
+- En la carpeta clases, están los distintos modelos de clases que se utilizan en el proyecto.
+- En la carpeta excepciones, se crearon diferentes excepciones con mensajes agradables al punto de vista del usuario en caso de errores durante la ejecución.
+- En la carpeta unittest, se realizan varios tests de las diferentes funciones implementadas en el sistema para garantizar el buen funcionamiento del mismo.
 
 ## ⏰ Información Importante sobre la Entrega
 
 ### 📅 Fechas Clave
+
 - **Fecha límite de entrega**: 17 de junio de 2025
 - **Fecha sugerida de entrega**: Semana del 10 de junio de 2025
 
 ### 📝 Consideraciones
+
 Se recomienda encarecidamente a los estudiantes:
 
 - Completar el trabajo práctico lo antes posible, idealmente para la semana del 10 de junio.
@@ -21,6 +50,7 @@ Se recomienda encarecidamente a los estudiantes:
 - No postergar la entrega hasta el último momento, ya que no se aceptarán entregas después de la fecha límite establecida.
 
 ### ⚠️ Requisitos Académicos
+
 En virtud de los estándares académicos establecidos y la importancia de mantener un nivel adecuado de participación:
 
 - La entrega oportuna y completa de este trabajo práctico es un requisito fundamental para continuar con el cursado.
@@ -28,6 +58,7 @@ En virtud de los estándares académicos establecidos y la importancia de manten
 - Esta medida busca asegurar que todos los estudiantes alcancen los objetivos de aprendizaje establecidos para la materia.
 
 ### 📚 Instrucciones para el Desarrollo
+
 **IMPORTANTE**: Antes de comenzar con el desarrollo del trabajo práctico:
 
 - Lea detalladamente la consigna completa que se presenta a continuación.
@@ -37,7 +68,7 @@ En virtud de los estándares académicos establecidos y la importancia de manten
 
 ---
 
-## 📝 Consigna 
+## 📝 Consigna
 
 ### 🎯 Objetivo
 
@@ -50,6 +81,7 @@ Desarrollar un sistema de gestión para una **clínica médica** utilizando prog
 - Mantener una **historia clínica** para cada paciente, con registro de turnos y recetas.
 
 ---
+
 ### 🚨 Requisitos técnicos
 
 - El sistema debe implementar:
@@ -79,6 +111,7 @@ Desarrollar un sistema de gestión para una **clínica médica** utilizando prog
 Representa a un paciente de la clínica.
 
 ### 🔐 Atributos Privados
+
 - `__nombre__`: `str` — Nombre completo del paciente.
 - `__dni__`: `str` — DNI del paciente (identificador único).
 - `__fecha_nacimiento__`: `str` — Fecha de nacimiento del paciente en formato `dd/mm/aaaa`.
@@ -86,9 +119,11 @@ Representa a un paciente de la clínica.
 ### ⚙️ Métodos
 
 #### 📄 Acceso a Información
+
 - `obtener_dni() -> str`:  Devuelve el DNI del paciente.  
 
 #### 🧾 Representación
+
 - `__str__() -> str`:  Representación en texto del paciente.  
 
 ## 🩺 Clase Medico
@@ -96,6 +131,7 @@ Representa a un paciente de la clínica.
 Representa a un médico del sistema, con sus especialidades y matrícula profesional.
 
 ### 🔐 Atributos Privados
+
 - `__nombre__`: `str` — Nombre completo del médico.
 - `__matricula__`: `str` — Matrícula profesional del médico (clave única).
 - `__especialidades__`: `list[Especialidad]` — Lista de especialidades con sus días de atención.
@@ -103,13 +139,16 @@ Representa a un médico del sistema, con sus especialidades y matrícula profesi
 ### ⚙️ Métodos
 
 #### ✔️ Registro de Datos
+
 - `agregar_especialidad(especialidad: Especialidad)`: Agrega una especialidad a la lista del médico.
 
 #### 📄 Acceso a Información
+
 - `obtener_matricula() -> str`: Devuelve la matrícula del médico.
 - `obtener_especialidad_para_dia(dia: str) -> str | None`: Devuelve el nombre de la especialidad disponible en el día especificado, o `None` si no atiende ese día.
 
 #### 🧾 Representación
+
 - `__str__() -> str`: Representación legible del médico, incluyendo matrícula y especialidades.
 
 
@@ -118,18 +157,22 @@ Representa a un médico del sistema, con sus especialidades y matrícula profesi
 Representa una especialidad médica junto con los días de atención asociados.
 
 ### 🔐 Atributos Privados
+
 - `__tipo__`: `str` — Nombre de la especialidad (por ejemplo, "Pediatría", "Cardiología").
 - `__dias__`: `list[str]` — Lista de días en los que se atiende esta especialidad, en minúsculas.
 
 ### ⚙️ Métodos
 
 #### 📄 Acceso a Información
+
 - `obtener_especialidad() -> str`: Devuelve el nombre de la especialidad.
 
 #### ✅ Validaciones
+
 - `verificar_dia(dia: str) -> bool`: Devuelve `True` si la especialidad está disponible en el día proporcionado (no sensible a mayúsculas/minúsculas), `False` en caso contrario.
 
 #### 🧾 Representación
+
 - `__str__() -> str`: Devuelve una cadena legible con el nombre de la especialidad y los días de atención (por ejemplo: `"Pediatría (Días: lunes, miércoles, viernes)"`).
 
 
@@ -138,6 +181,7 @@ Representa una especialidad médica junto con los días de atención asociados.
 Representa un turno médico entre un paciente y un médico para una especialidad específica en una fecha y hora determinada.
 
 ### 🔐 Atributos Privados
+
 - `__paciente__`: `Paciente` — Paciente que asiste al turno.
 - `__medico__`: `Medico` — Médico asignado al turno.
 - `__fecha_hora__`: `datetime` — Fecha y hora del turno.
@@ -146,10 +190,12 @@ Representa un turno médico entre un paciente y un médico para una especialidad
 ### ⚙️ Métodos
 
 #### 📄 Acceso a Información
+
 - `obtener_medico() -> Medico`: Devuelve el médico asignado al turno.
 - `obtener_fecha_hora() -> datetime`: Devuelve la fecha y hora del turno.
 
 #### 🧾 Representación
+
 - `__str__() -> str`: Devuelve una representación legible del turno, incluyendo paciente, médico, especialidad y fecha/hora.
 
 
@@ -158,6 +204,7 @@ Representa un turno médico entre un paciente y un médico para una especialidad
 Representa una receta médica emitida por un médico a un paciente, incluyendo los medicamentos recetados y la fecha de emisión.
 
 ### 🔐 Atributos Privados
+
 - `__paciente__`: `Paciente` — Paciente al que se le emite la receta.
 - `__medico__`: `Medico` — Médico que emite la receta.
 - `__medicamentos__`: `list[str]` — Lista de medicamentos recetados.
@@ -166,6 +213,7 @@ Representa una receta médica emitida por un médico a un paciente, incluyendo l
 ### ⚙️ Métodos
 
 #### 🧾 Representación
+
 - `__str__() -> str`: Devuelve una representación en cadena de la receta.
 
 ## 📋 Clase HistoriaClinica
@@ -173,6 +221,7 @@ Representa una receta médica emitida por un médico a un paciente, incluyendo l
 Clase que almacena la información médica de un paciente: turnos y recetas.
 
 ### 🔐 Atributos Privados
+
 - `__paciente__`: `Paciente` — Paciente al que pertenece la historia clínica.
 - `__turnos__`: `list[Turno]` — Lista de turnos agendados del paciente.
 - `__recetas__`: `list[Receta]` — Lista de recetas emitidas para el paciente.
@@ -180,14 +229,17 @@ Clase que almacena la información médica de un paciente: turnos y recetas.
 ### ⚙️ Métodos
 
 #### ✔️ Registro de Datos
+
 - `agregar_turno(turno: Turno)`: Agrega un nuevo turno a la historia clínica.
 - `agregar_receta(receta: Receta)`: Agrega una receta médica a la historia clínica.
 
 #### 📄 Acceso a Información
+
 - `obtener_turnos() -> list[Turno]`: Devuelve una copia de la lista de turnos del paciente.
 - `obtener_recetas() -> list[Receta]`: Devuelve una copia de la lista de recetas del paciente.
 
 #### 🧾 Representación
+
 - `__str__() -> str`: Devuelve una representación textual de la historia clínica, incluyendo turnos y recetas.
 
 
@@ -196,6 +248,7 @@ Clase que almacena la información médica de un paciente: turnos y recetas.
 Clase principal que representa el sistema de gestión de la clínica.
 
 ### 🔐 Atributos Privados
+
 - `__pacientes__`: `dict[str, Paciente]` — Mapea DNI del paciente a su objeto correspondiente.
 - `__medicos__`: `dict[str, Medico]` — Mapea matrícula de médico a su objeto correspondiente.
 - `__turnos__`: `list[Turno]` — Lista de todos los turnos agendados.
@@ -204,6 +257,7 @@ Clase principal que representa el sistema de gestión de la clínica.
 ### ⚙️ Métodos
 
 #### ✔️ Registro y Acceso
+
 - `agregar_paciente(paciente: Paciente)`: Registra un paciente y crea su historia clínica.
 - `agregar_medico(medico: Medico)`: Registra un médico.
 - `obtener_pacientes() -> list[Paciente]`: Devuelve todos los pacientes registrados.
@@ -211,14 +265,17 @@ Clase principal que representa el sistema de gestión de la clínica.
 - `obtener_medico_por_matricula(matricula: str) -> Medico`: Devuelve un médico por su matrícula.
 
 #### 📆 Turnos
+
 - `agendar_turno(dni: str, matricula: str, especialidad: str, fecha_hora: datetime)`: Agenda un turno si se cumplen todas las condiciones.
 - `obtener_turnos() -> list[Turno]`: Devuelve todos los turnos agendados.
 
 #### 📑 Recetas e Historias Clínicas
+
 - `emitir_receta(dni: str, matricula: str, medicamentos: list[str])`: Emite una receta para un paciente.
 - `obtener_historia_clinica(dni: str) -> HistoriaClinica`: Devuelve la historia clínica completa de un paciente.
 
 #### ✅ Validaciones y Utilidades
+
 - `validar_existencia_paciente(dni: str)`: Verifica si un paciente está registrado.
 - `validar_existencia_medico(matricula: str)`: Verifica si un médico está registrado.
 - `validar_turno_no_duplicado(matricula: str, fecha_hora: datetime)`: Verifica que no haya un turno duplicado.

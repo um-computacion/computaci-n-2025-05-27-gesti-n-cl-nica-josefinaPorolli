@@ -8,6 +8,32 @@
 - **Ciclo Lectivo**: 2025
 - **Carrera**: Ingeniería en Informática
 
+## 📚 Documentación
+
+### Cómo ejecutar el sistema
+
+1. Abrir una terminal en la carpeta del proyecto
+2. Ejecutar el siguiente comando:
+python cli.py
+
+### Cómo ejecutar los tests
+
+1. Abrir una terminal en la carpeta del proyecto.
+2. Ejecutar el siguiente comando:
+python -m unittest discover -s unittest
+
+Esto buscará y ejecutará todos los tests en la carpeta `unittest`.
+
+3. Si se quiere correr un test específico, por ejemplo `test_turnos.py`:
+python -m unittest test_turnos.py
+
+### Diseño general
+
+- El presente proyecto simula un software de gestión de una clínica. Al momento de ejecutar cli.py, aparece un menú en para elegir entre distintas opciones.
+- En la carpeta clases, están los distintos modelos de clases que se utilizan en el proyecto.
+- En la carpeta excepciones, se crearon diferentes excepciones con mensajes agradables al punto de vista del usuario en caso de errores durante la ejecución.
+- En la carpeta unittest, se realizan varios tests de las diferentes funciones implementadas en el sistema para garantizar el buen funcionamiento del mismo.
+
 ## ⏰ Información Importante sobre la Entrega
 
 ### 📅 Fechas Clave
